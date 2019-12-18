@@ -14,6 +14,8 @@ func main()  {
 	money := 0.0
 	//每次收支的说明
 	note := ""
+	//定义一个变量，记录是否有收支的行为
+	flag := false
 	//收支的详情使用字符串来记录
 	//当有收支时，只需要对details进行拼接处理即可
 	details := "收支\t账户金额\t收支金额\t说   明"
@@ -32,7 +34,11 @@ func main()  {
 		switch key {
 			case "1":
 				fmt.Println("----------------当前收支明细记录----------------")
-				fmt.Println(details)
+				if flag == true {
+					fmt.Println(details)
+				}else{
+					fmt.Println("当前没有收支明细...来一笔吧！")
+				}
 			case "2":	
 				fmt.Println("本次收入金额：")
 				fmt.Scanln(&money)
@@ -41,6 +47,7 @@ func main()  {
 				fmt.Scanln(&note)
 				//将这个收入情况拼接到details变量
 				details += fmt.Sprintf("\n收入\t%v\t\t%v\t\t%v",balance,money,note)
+				flag = true
 			case "3":	
 				fmt.Println("本次支出金额：")
 				fmt.Scanln(&money)
@@ -53,6 +60,7 @@ func main()  {
 				fmt.Println("本次支出说明：")
 				fmt.Scanln(&note)
 				details += fmt.Sprintf("\n支出\t%v\t\t%v\t\t%v",balance,money,note)
+				flag = true
 			case "4":
 				fmt.Println("您确定要退出吗？y/n")
 				choice := ""
